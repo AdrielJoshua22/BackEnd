@@ -1,67 +1,70 @@
-class Product {
-  constructor(){
-  title= title;
-  description = description;
-  price= price;
-  thumbnail = thumbnail;
-  code = lastcode + 1;
-  stock = stock
-} }
-
 class ProductManager {
-  constructor(){
-      this.products= [];
-  }
-
-  getProducts(){
-      return this.products
-  }
-
-  getlastProduct (){
-      let lastP= this.products.pop()
-      return lastP
-  }
-
-
-  addProduct(title, description, price, thumbnail, code, stock){
-      if (this.products.length === 0) {
-          let product = {
-              title: title,
-              description : description,
-              price: price,
-              thumbnail : thumbnail,
-              code : 1,
-              stock : stock
-          }
-          this.products.push(product);
-          return product;
+    constructor() {
+      this.products = [];
+    }
+  
+    getProducts() {
+      return console.log(this.products);
+    }
+  
+    addProduct = (title, description, price, thumbnail, code, stock) => {
+      const product = {
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+      };
+      const codeProduct = this.products.find((product) => product.code === code);
+      if (!codeProduct) {
+        if (this.products.length === 0) {
+          product.id = 1;
+        } else {
+          product.id = this.products[this.products.length - 1].id + 1;
+        }
+        this.products.push(product);
+      } else {
+        return console.log("El código no puede repetirse");
       }
-         
-      let lastProduct = this.products[this.products.length - 1];
-      let lastcode = lastProduct.code;
-      let searcher = this.products.find(product => product.code === code);
-      
-      if(!searcher) { 
-          let product = {
-              title: title,
-              description : description,
-              price: price,
-              thumbnail : thumbnail,
-              code : lastcode + 1,
-              stock : stock
-          }
-          this.products.push(product);
-          return product;
+    };
+  
+    getProductById = (productId) => {
+      const idProduct = this.products.find((product) => product.id === productId);
+      if (idProduct) {
+        return console.log(idProduct);
+      } else {
+        return console.log("Not Found");
       }
-                      
-      return "Error: ese producto ya existe.";      
+    };
   }
-
-
-getProductbyId(code){
- let byId =  this.products.find(product=> product.code === code)
-if(!byId) return "No existe un producto con ese Id"
-
-return byId
-}
-}
+  
+  //------------------------TEST----------------------------------------
+  const product = new ProductManager();
+  product.addProduct(
+    "Producto prueba1",
+    "Este producto es una prueba",
+    200,
+    "Sin imagen",
+    "abc123",
+    25
+  );
+  product.addProduct(
+    "Producto prueba2",
+    "Este producto es una prueba",
+    200,
+    "Sin imagen",
+    "abc123",
+    25
+  );
+  product.addProduct(
+    "Producto prueba3",
+    "Este producto es una prueba",
+    200,
+    "Sin imagen",
+    "abc124",
+    25
+  );
+  product.getProducts();
+  product.getProductById(2);
+  product.getProductById(3);
