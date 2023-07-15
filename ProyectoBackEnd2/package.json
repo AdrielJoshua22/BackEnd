@@ -1,12 +1,12 @@
 {
-  "name": "backend",
+  "name": "proyectobackend2",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
+  "main": "productManager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
